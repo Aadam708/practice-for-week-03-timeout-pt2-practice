@@ -1,13 +1,13 @@
 /***********************************************************************
 Write a function, `dynamicIntervalCount`, that accepts a callback, a delay
-in milliseconds, and an optional amount as arguments. The function should 
-set an interval with the given callback and delay. If an amount argument 
-is passed, the interval should be cleared after the callback has been 
+in milliseconds, and an optional amount as arguments. The function should
+set an interval with the given callback and delay. If an amount argument
+is passed, the interval should be cleared after the callback has been
 called 'amount' number of times. If an amount argument is not passed,
 the interval should not be cleared and `dynamicIntervalCount` should instead
 return the Timeout object for the interval.
 
-In addition to Mocha, we recommend that you test your code manually using 
+In addition to Mocha, we recommend that you test your code manually using
 node with the examples below.
 
 Examples:
@@ -24,8 +24,22 @@ const timeoutObject = dynamicIntervalCount(function() {
 console.log(timeoutObject); // Timeout { ... }
 ***********************************************************************/
 
+let count = 0
 function dynamicIntervalCount(cb, delay, amount) {
   // Your code here
+
+
+
+  let res = setInterval(function() {
+
+    if (count === amount) clearInterval(res)
+
+
+    cb()
+    count++
+  },delay,amount)
+
+  if (amount === undefined) return res
 }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
